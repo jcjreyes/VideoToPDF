@@ -1,4 +1,5 @@
 import sys
+import os
 import cv2
 from .energy_computer import EnergyComputer
 from .arg_parser import ArgumentParser
@@ -16,6 +17,11 @@ def main():
 
     energy_computer = EnergyComputer()
     count = 0
+
+    if os.path.exists(output_path):
+        print("Folder found.")
+    else:
+        os.makedirs(output_path)
 
     while True:
         ret, frame = cap.read()
@@ -42,6 +48,11 @@ def main():
 
     cap.release()
     cv2.destroyAllWindows()
+
+
+def convert_to_pdf():
+    args = ArgumentParser().run(sys.argv[1:])
+    folder = args.output
 
 
 if __name__ == "__main__":
