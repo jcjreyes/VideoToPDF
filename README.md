@@ -18,7 +18,7 @@ It uses the OpenCV library to read frames from the video file and save them as i
 
 ```python
 pip install -r requirements.txt
-python src.main "FILE.mp4"
+python -m src.main "FILE.mp4" [args]
 ```
 
 ### Args
