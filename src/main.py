@@ -3,6 +3,7 @@ import os
 import cv2
 from .energy_computer import EnergyComputer
 from .arg_parser import ArgumentParser
+from .pdf_creator import ImageToPdfConverter
 
 
 def get_args():
@@ -56,7 +57,10 @@ def main():
 
 def convert_to_pdf():
     _, folder, _ = get_args()
+    converter = ImageToPdfConverter(folder, 'output.pdf')
+    converter.convert()
 
 
 if __name__ == "__main__":
     main()
+    convert_to_pdf()
