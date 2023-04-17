@@ -5,11 +5,13 @@ from .energy_computer import EnergyComputer
 from .arg_parser import ArgumentParser
 
 
-def main():
+def get_args():
     args = ArgumentParser().run(sys.argv[1:])
-    fileName = args.src
-    output_path = args.output
-    interval_length = args.interval
+    return args.src, args.output, args.interval
+
+
+def main():
+    fileName, output_path, interval_length = get_args()
 
     cap = cv2.VideoCapture(fileName)
     fps = cap.get(cv2.CAP_PROP_FPS)
@@ -17,6 +19,7 @@ def main():
 
     energy_computer = EnergyComputer()
     count = 0
+    frame_num = 0
 
     if os.path.exists(output_path):
         print("Folder found.")
@@ -35,7 +38,8 @@ def main():
 
             if energy_computer.isNew():
                 print("New frame detected.")
-                cv2.imwrite(f"{output_path}/{count}.png", frame)
+                cv2.imwrite(f"{output_path}/{frame_num:04d}.png", frame)
+                frame_num += 1
 
             for _ in range(num_frames_per_interval - 1):
                 ret, frame = cap.read()
@@ -51,8 +55,7 @@ def main():
 
 
 def convert_to_pdf():
-    args = ArgumentParser().run(sys.argv[1:])
-    folder = args.output
+    _, folder, _ = get_args()
 
 
 if __name__ == "__main__":
