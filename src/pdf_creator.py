@@ -1,6 +1,5 @@
 import os
-from fpdf import FPDF
-from PIL import Image
+import img2pdf
 
 
 class ImageToPdfConverter:
@@ -18,11 +17,5 @@ class ImageToPdfConverter:
 
     def convert(self):
         files = self.find_files()
-        images = [Image.open(f"{self.image_dir}/{f}") for f in files]
-
-        images[0].save(
-            self.pdf_file,
-            resolution=100,
-            save_all=True,
-            append_images=images[1:],
-        )
+        with open("output.pdf", "wb") as f:
+            f.write(img2pdf.convert(files))

@@ -25,6 +25,7 @@ def main():
     if os.path.exists(output_path):
         print("Folder found.")
     else:
+        print("Folder not found. Making folder.")
         os.makedirs(output_path)
 
     while True:
@@ -38,7 +39,7 @@ def main():
             energy_computer.add(frame)
 
             if energy_computer.isNew():
-                print("New frame detected.")
+                print("New frame detected. " + f"Frame: {frame_num:04d}.png")
                 cv2.imwrite(f"{output_path}/{frame_num:04d}.png", frame)
                 frame_num += 1
 
