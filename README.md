@@ -28,7 +28,7 @@ python -m src.main "FILE.mp4" [args]
 
 ## Todo
 
-- [ ] do the Actual converting into PDF...
+- [x] do the Actual converting into PDF...
 - [ ] allow user to select which time they want
 - [ ] parallelization? (gpt says concurrent.futures so whatever)
 - [ ] progress bar
