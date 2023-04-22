@@ -58,6 +58,7 @@ def main():
 
 def convert_to_pdf():
     _, folder, _ = get_args()
+    print("Saving pdf in: " + folder)
     converter = ImageToPdfConverter(folder, 'output.pdf')
     converter.convert()
 

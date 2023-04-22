@@ -17,5 +17,7 @@ class ImageToPdfConverter:
 
     def convert(self):
         files = self.find_files()
-        with open("output.pdf", "wb") as f:
-            f.write(img2pdf.convert(files))
+        full_paths = [os.path.join(self.image_dir, filename) for filename in files]
+        print(full_paths)
+        with open(f"{self.image_dir}/output.pdf", "wb") as f:
+            f.write(img2pdf.convert(full_paths))

@@ -31,7 +31,7 @@ class EnergyComputer:
         Returns True if the difference is more than 350000, False otherwise.
         """
         latest_energy = self.energy_queue[-1]
-        return abs(latest_energy - self.average_energy) >= 350000
+        return abs(latest_energy - self.average_energy) >= 250000
 
     def get_energy_queue(self):
         """
